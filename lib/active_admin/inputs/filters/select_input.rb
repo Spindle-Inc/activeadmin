@@ -13,6 +13,8 @@ module ActiveAdmin
         def searchable_method_name
           if searchable_has_many_through?
             "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
+          elsif reflection.foreign_key
+            reflection.foreign_key.to_s
           else
             name = method.to_s
             name.concat '_id' if reflection
